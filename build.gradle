@@ -1,0 +1,72 @@
+
+group 'org.github.kana112233'
+version '1.0.1'
+
+task distributionAllPackage(type: Copy) {
+    dependsOn 'jraftKV:distTar','server:distTar'
+    from 'server/build/distributions/'
+    from 'jraftdemo/build/distributions/'
+    into 'build/'
+}
+
+allprojects {
+    apply plugin: "java"
+    apply plugin: "groovy"
+    apply plugin: 'jacoco'
+
+    version = rootProject.version
+
+    sourceCompatibility = 1.8
+    targetCompatibility = 1.8
+
+    plugins.withType(DistributionPlugin) {
+        distTar {
+            compression = Compression.GZIP
+            archiveExtension = 'tar.gz'
+        }
+    }
+
+    repositories {
+        mavenLocal()
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/central/' }
+        mavenLocal()
+    }
+
+    dependencies {
+
+        testImplementation "junit:junit:4.12"
+        testImplementation "org.mockito:mockito-core:2.25.1"
+
+        compile "org.codehaus.groovy:groovy-all:2.5.4"
+        testCompile "org.spockframework:spock-core:1.1-groovy-2.4-rc-2"
+        testRuntime "net.bytebuddy:byte-buddy:1.9.3"
+    }
+
+    test {
+        testLogging {
+            // Show that tests are run in the command-line output
+            events "passed", "skipped", "failed", "standardOut", "standardError"
+        }
+    }
+}
+
+
+task codeCoverageReport(type: JacocoReport) {
+    executionData fileTree(project.rootDir.absolutePath).include("**/build/jacoco/*.exec")
+
+    subprojects.each {
+        println(it)
+        sourceSets it.sourceSets.main
+    }
+
+    reports {
+        xml.enabled true
+        xml.destination file("${buildDir}/reports/jacoco/report.xml")
+        html.enabled false
+        csv.enabled false
+    }
+}
+
+codeCoverageReport.dependsOn {
+    subprojects*.test
+}
