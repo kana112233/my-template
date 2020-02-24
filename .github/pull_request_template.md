@@ -1,5 +1,5 @@
 <!--
-Thank you for contributing to JRBase! Please read JRBase's [CONTRIBUTING](https://github.com/jrbase/jrbase/blob/master/README.md) document **BEFORE** filing this PR.
+Thank you for contributing to JRBase! Please read JRBase's [CONTRIBUTING](https://github.com/kana112233/my-template/blob/master/README.md) document **BEFORE** filing this PR.
 -->
 
 ### What problem does this PR solve? <!--add issue link with summary if exists-->
@@ -12,29 +12,29 @@ Thank you for contributing to JRBase! Please read JRBase's [CONTRIBUTING](https:
 
 Tests <!-- At least one of them must be included. -->
 
- - Unit test
- - Integration test
- - Manual test (add detailed scripts or steps below)
- - No code
+ - [ ] Unit test
+ - [ ] Integration test
+ - [ ] Manual test (add detailed scripts or steps below)
+ - [ ] No code
 
 Code changes
 
- - Has exported function/method change
- - Has exported variable/fields change
- - Has interface methods change
- - Has persistent data change
+ - [ ] Has exported function/method change
+ - [ ] Has exported variable/fields change
+ - [ ] Has interface methods change
+ - [ ] Has persistent data change
 
 Side effects
 
- - Possible performance regression
- - Increased code complexity
- - Breaking backward compatibility
+ - [ ] Possible performance regression
+ - [ ] Increased code complexity
+ - [ ] Breaking backward compatibility
 
 Related changes
 
- - Need to cherry-pick to the release branch
- - Need to update the documentation
+ - [ ] Need to cherry-pick to the release branch
+ - [ ] Need to update the documentation
 
 Release note
 
- - Write release note for bug-fix or new feature.
+ - [ ] Write release note for bug-fix or new feature.
